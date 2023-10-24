@@ -1,37 +1,49 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Wie zijn wij?</h2>
-    <p>
-      RealEstateCare is een dienstverlenende organisatie die voor verschillende opdrachtgever zoals
-      woningcoöperaties en vastgoedontwikkelaars woningen onderhoudt, verbetert en inspecteert. Hier
-      spelen veel en ingewikkelde bedrijfsprocessen en wordt veel data verwerkt. Eén aspect van deze
-      bedrijfsprocessen is het op locatie inspecteren van een pand en het opnemen van schade (door huurders,
-      ongedierte of calamiteiten), achterstallig onderhoud, verouderde installaties, brandgevaarlijke situaties en
-      al dan niet ongewenste modificaties van huurders.
-    </p>
-  </div>
+    <v-row class="my-row ma-0">
+      <v-col>
+        <v-btn prepend-icon="mdi-bookmark-outline" class="text-capitalize" stacked>
+        Scheduled
+        </v-btn>
+      </v-col>
+      <v-col>
+        <v-btn prepend-icon="mdi-check-circle" class="text-capitalize" stacked>
+        Completed
+        </v-btn>
+      </v-col>
+      <v-col>
+        <v-btn prepend-icon="mdi-dots-grid" class="text-capitalize" stacked>
+        Knowledge base
+        </v-btn>
+      </v-col>
+      <v-col>
+        <v-btn prepend-icon="mdi-cog" class="text-capitalize" stacked>
+        Settings
+        </v-btn>
+      </v-col>
+    </v-row>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
+  name: 'ContentHome'
 }
 </script>
 
 <style scoped>
-.hello {
-  width: 45vw;
-  margin: 0 auto;
+.my-row {
+  height: calc(100% - 56px);
 }
 
-p {
-  text-align: justify;
+.v-col {
+  flex-basis: auto;
+  max-width: 50%;
 }
-a {
-  color: rgb(0,170,162);
+
+.v-col .v-btn {
+  width: 100%;
+  height: 100%;
+  font-size: x-large;
 }
 </style>
+
+

@@ -1,15 +1,22 @@
 <template>
-  <img alt="Real Estate Care logo" src="./assets/logo.png">
-  <Homepage msg="Welcome to Real Estate Care App"/>
+  <v-app>
+    <v-main>
+      <TopBar/>
+      <ContentHome/>
+      <BottomNav/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import Homepage from './components/Homepage.vue'
+import TopBar from './components/bars/TopBar.vue'
+import ContentHome from './components/Homepage.vue'
+import BottomNav from './components/bars/BottomNav.vue'
 
 export default {
   name: 'App',
   components: {
-    Homepage
+    TopBar, ContentHome, BottomNav
   }
 }
 </script>
@@ -22,6 +29,5 @@ export default {
   text-align: center;
   color: rgb(41,52,57);
   background-color: white;
-  margin-top: 60px;
 }
 </style>
