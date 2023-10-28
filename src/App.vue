@@ -2,7 +2,7 @@
   <v-app>
     <v-main>
       <TopBar/>
-      <ContentHome/>
+      <RouterView/>
       <BottomNav/>
     </v-main>
   </v-app>
@@ -10,13 +10,12 @@
 
 <script>
 import TopBar from './components/bars/TopBar.vue'
-import ContentHome from './components/Homepage.vue'
 import BottomNav from './components/bars/BottomNav.vue'
 
 export default {
   name: 'App',
   components: {
-    TopBar, ContentHome, BottomNav
+    TopBar, BottomNav
   }
 }
 </script>

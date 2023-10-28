@@ -1,31 +1,52 @@
 <template>
     <v-row class="my-row ma-0">
-      <v-col>
-        <v-btn prepend-icon="mdi-bookmark-outline" class="text-capitalize" stacked>
-        Scheduled
-        </v-btn>
-      </v-col>
-      <v-col>
-        <v-btn prepend-icon="mdi-check-circle" class="text-capitalize" stacked>
-        Completed
-        </v-btn>
-      </v-col>
-      <v-col>
-        <v-btn prepend-icon="mdi-dots-grid" class="text-capitalize" stacked>
-        Knowledge base
-        </v-btn>
-      </v-col>
-      <v-col>
-        <v-btn prepend-icon="mdi-cog" class="text-capitalize" stacked>
-        Settings
-        </v-btn>
-      </v-col>
+      <template v-for="(redirector, index) in redirectors" v-bind:key="index">
+        <v-col>
+          <v-btn :prepend-icon=redirector.icon class="text-capitalize" stacked 
+          @click="sendToPage(redirector.link)">
+          {{redirector.name}}
+          </v-btn>
+        </v-col>
+      </template>
     </v-row>
 </template>
 
 <script>
 export default {
-  name: 'ContentHome'
+  name: 'ContentHome',
+  data() {
+    return {
+      redirectors : {
+        schedule : {
+          name : "Scheduled",
+          icon : "mdi-bookmark-outline",
+          link: "schedule"
+        },
+        completed : {
+          name : "Completed",
+          icon : "mdi-check-circle",
+          link: "completed"
+        },
+        knowlegde : {
+          name : "Knowlegde base",
+          icon : "mdi-dots-grid",
+          link: "knowlegdebase"
+        },
+        settings : {
+          name : "Settings",
+          icon : "mdi-cog",
+          link: "settings"
+        }
+      }
+    }
+  }
+  // methods :
+  // {
+  //   SendtoPage(e)
+  //   {
+  //     this.$router.push({name : e.link});
+  //   }
+  // }
 }
 </script>
 
