@@ -4,7 +4,7 @@
     <v-icon icon="mdi-signal" class="ms-2"></v-icon>
     <v-icon icon="mdi-battery" class="ms-2"></v-icon>
     </v-system-bar>
-    <v-toolbar density="comfortable" title="">
+    <v-toolbar density="comfortable">
 
       <v-list-item>
         <template v-slot:prepend>
