@@ -1,7 +1,7 @@
 <template>
     <v-bottom-navigation :elevation="0" mode="shift" grow class="my-toolbar bg-teal" :model-value="NavValue">
         <template v-for="(item, index) in navigation" :key="index">
-            <v-btn class="px-1" :value="item.name" v-on:click="sendToPage(item.link)">
+            <v-btn class="px-1" :value="item.link" v-on:click="handleClick(item.link)">
                 <v-icon>{{ item.icon }}</v-icon>
                 <span>{{ item.name }}</span>
             </v-btn>
@@ -10,17 +10,20 @@
 </template>
 
 <script>
+import {useNavigationStore} from "@/stores/navigationStore.js";
+
 export default {
+    created() {
+        console.log(this.NavValue);
+    },
     name: "BottomNav",
-    props: {
-        NavValue : String
-    }, 
     data() {
         return {
+            store : useNavigationStore(),
             navigation : {
                 task : {
                     name : "Active tasks",
-                    link: "active-task",
+                    link: "schedule",
                     icon : "mdi-wrench"
                 },
                 search : {
@@ -34,6 +37,18 @@ export default {
                     icon: "mdi-alert"
                 }
             }
+        }
+    },
+    methods : {
+        handleClick(link)
+        {
+            this.store.set(link);
+            this.sendToPage(link);
+        }
+    },
+    computed : {
+        NavValue() {
+            return this.store.page;
         }
     }
 }

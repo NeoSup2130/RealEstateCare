@@ -3,7 +3,7 @@
       <template v-for="(redirector, index) in redirectors" v-bind:key="index">
         <v-col>
           <v-btn :prepend-icon=redirector.icon class="text-capitalize" stacked 
-          @click="sendToPage(redirector.link)">
+          @click="handleClick(redirector.link)">
           {{redirector.name}}
           </v-btn>
         </v-col>
@@ -12,10 +12,13 @@
 </template>
 
 <script>
+import {useNavigationStore} from "@/stores/navigationStore.js";
+
 export default {
   name: 'ContentHome',
   data() {
     return {
+      store : useNavigationStore(),
       redirectors : {
         schedule : {
           name : "Scheduled",
@@ -39,14 +42,14 @@ export default {
         }
       }
     }
+  },
+  methods : {
+      handleClick(link)
+      {
+          this.store.set(link);
+          this.sendToPage(link);
+      }
   }
-  // methods :
-  // {
-  //   SendtoPage(e)
-  //   {
-  //     this.$router.push({name : e.link});
-  //   }
-  // }
 }
 </script>
 
