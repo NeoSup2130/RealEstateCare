@@ -1,8 +1,10 @@
 <template>
     <h2 class="mt-2">Completed inspections</h2>
-    <v-divider class="w-50"></v-divider>
-    <div class="mx-4">
-    <v-expansion-panels>
+    <v-divider class="w-50 mx-auto my-1" thickness="3"></v-divider>
+    <ProgressBar :display="this.inspections == null"/>
+
+    <div >
+    <v-expansion-panels v-if="inspections != null" >
       <v-expansion-panel v-for="inspection in inspections" :key="inspection.id" class="ma-2">
         <v-expansion-panel-title expand-icon="mdi-menu-down">
           <v-row>
@@ -21,10 +23,11 @@
 
 <script>
 import InspectionPanel from "@/components/shared/InspectionPanel.vue";
+import ProgressBar from "@/components/shared/ProgressBar.vue";
 
     export default {
         name: "CompletedView",
-        components: { InspectionPanel },
+        components: { InspectionPanel, ProgressBar },
         data() {
             return {
                 inspections : null
@@ -53,5 +56,9 @@ import InspectionPanel from "@/components/shared/InspectionPanel.vue";
 <style scoped>
 .category-view :deep(.v-expansion-panel-text__wrapper){
     padding: 0 !important;
+}
+
+.centered {
+    margin: calc(45vh - 92px) 0;
 }
 </style>
