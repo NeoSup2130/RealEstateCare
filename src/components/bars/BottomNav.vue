@@ -13,9 +13,6 @@
 import {useNavigationStore} from "@/stores/navigationStore.js";
 
 export default {
-    created() {
-        console.log(this.NavValue);
-    },
     name: "BottomNav",
     data() {
         return {
