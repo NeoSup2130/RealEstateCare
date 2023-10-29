@@ -16,16 +16,34 @@
 
       <v-spacer></v-spacer>
       <v-icon class="float-right ma-1" icon="mdi-bell"></v-icon>
-      <v-icon class="float-right ma-1" icon="mdi-cog"></v-icon>
+      <v-btn class="float-right ma-1" density="compact" icon="mdi-cog" @click="handleClick('settings')"></v-btn>
     </v-toolbar>
 </template>
 
 <script>
 import imageLoader from "@/mixins/imageLoader";
+import {useNavigationStore} from "@/stores/navigationStore.js";
 
 export default {
   name: 'TopBar',
-  mixins: [imageLoader]
+  mixins: [imageLoader],
+  data() {
+    return {
+      store : useNavigationStore()
+    }
+  },
+    methods : {
+        handleClick(link)
+        {
+            this.store.set(link);
+            this.sendToPage(link);
+        }
+    },
+    computed : {
+        NavValue() {
+            return this.store.page;
+        }
+    }
 }
 </script>
 
@@ -33,7 +51,7 @@ export default {
 .v-toolbar {
   background-color: rgb(20,27,31);
 }
-.v-toolbar .v-icon {
+.v-toolbar .v-icon, .v-btn {
   color: white;
 }
 .v-list-item {
