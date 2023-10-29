@@ -19,7 +19,12 @@ export const useNavigationStore = defineStore('navigation',
     actions : {
         set(newPage)
         {
-            if (validate(newPage)) this.page = newPage;
+            if (validate(newPage)) 
+            {
+                this.page = newPage;
+                return true;
+            }
+            return false;
         },
         reset() {
             this.page = 'home';

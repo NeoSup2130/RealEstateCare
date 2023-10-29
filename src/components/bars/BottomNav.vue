@@ -42,8 +42,8 @@ export default {
     methods : {
         handleClick(link)
         {
-            this.store.set(link);
-            this.sendToPage(link);
+            if(this.store.set(link))
+                this.sendToPage(link);
         }
     },
     computed : {
