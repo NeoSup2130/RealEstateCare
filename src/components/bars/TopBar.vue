@@ -3,8 +3,6 @@
     <v-icon icon="mdi-wifi-strength-4"></v-icon>
     <v-icon icon="mdi-signal" class="ms-2"></v-icon>
     <v-icon icon="mdi-battery" class="ms-2"></v-icon>
-
-    <span class="ms-2">15:05</span>
     </v-system-bar>
     <v-toolbar density="comfortable" title="">
 
