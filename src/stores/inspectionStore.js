@@ -13,6 +13,10 @@ export const useInspectionStore = defineStore('inspection',
             errors : null
         }
     },
+    persist: {
+        storage: localStorage,
+        debug : true
+    },
     actions : {
         fetchInspections()
         {
@@ -26,7 +30,6 @@ export const useInspectionStore = defineStore('inspection',
                 this.loadingState = 'notLoading';
                 this.inspections = [];
                 this.errors = error;
-
             })
         },
         clearInspections()
