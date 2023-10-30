@@ -2,8 +2,6 @@
     <h2 class="mt-2">Completed inspections</h2>
     <v-divider class="w-50 mx-auto my-1" thickness="3"></v-divider>
     <ProgressBar :display="this.isLoading"/>
-
-    <div >
     <v-expansion-panels v-if="inspections != null" >
       <v-expansion-panel v-for="inspection in inspections" :key="inspection.id" class="ma-2">
         <v-expansion-panel-title expand-icon="mdi-menu-down">
@@ -18,7 +16,6 @@
         </v-expansion-panel-text>
       </v-expansion-panel>
     </v-expansion-panels>
-    </div>
 </template>
 
 <script>
