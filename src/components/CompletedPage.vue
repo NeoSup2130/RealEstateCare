@@ -1,7 +1,7 @@
 <template>
     <h2 class="mt-2">Completed inspections</h2>
     <v-divider class="w-50 mx-auto my-1" thickness="3"></v-divider>
-    <ProgressBar :display="this.inspections == null"/>
+    <ProgressBar :display="this.isLoading"/>
 
     <div >
     <v-expansion-panels v-if="inspections != null" >
@@ -24,31 +24,47 @@
 <script>
 import InspectionPanel from "@/components/shared/InspectionPanel.vue";
 import ProgressBar from "@/components/shared/ProgressBar.vue";
+import {useInspectionStore} from "@/stores/inspectionStore.js";
 
     export default {
         name: "CompletedView",
         components: { InspectionPanel, ProgressBar },
         data() {
             return {
-                inspections : null
+                store : useInspectionStore(),
             }
         },
         methods : {
             showInspection(e)
             {
                 window.alert(e.id);
+            },
+            fetchInspections()
+            {
+                this.store.fetchInspections();
             }
         },
-        async created() 
+        computed : {
+            inspections() {
+                return this.store.inspections;
+            },
+            isLoading() {
+                if (this.store)
+                {
+                    return this.store.isLoading;
+                } 
+                return true;
+            },
+            error() {
+                return this.store.errors;
+            }
+        },
+        mounted()
         {
-            const response = await fetch("http://localhost:3000/inspections?_sort=date&_order=desc", {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                },
-            });
-            const data = await response.json();
-            this.inspections = data;
+            if(this.inspections.length == 0) 
+            {
+                this.fetchInspections();
+            }
         }
     }
 </script>
