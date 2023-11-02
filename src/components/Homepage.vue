@@ -1,14 +1,18 @@
 <template>
+  <v-container class="pa-0 ma-0 mx-auto">
+    <h1 class="ma-0">Homepage</h1>
+    <v-divider class="w-50 mx-auto" thickness="3"></v-divider>
     <v-row class="my-row ma-0">
       <template v-for="(redirector, index) in redirectors" v-bind:key="index">
         <v-col>
           <v-btn :prepend-icon=redirector.icon class="text-capitalize" stacked 
           @click="handleClick(redirector.link)">
-          {{redirector.name}}
+          <h2 class="text-h6">{{redirector.name}}</h2>
           </v-btn>
         </v-col>
       </template>
     </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -54,7 +58,7 @@ export default {
 </script>
 
 <style scoped>
-.my-row {
+.v-container, .my-row {
   height: calc(100% - 56px);
 }
 
