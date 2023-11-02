@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+import { markRaw } from 'vue'
 import App from './App.vue';
 
 // Vuetify
@@ -23,6 +24,10 @@ pinia.use(piniaPluginPersistedState);
 // Router
 import router from "@/router";
 import routerFuncs from "@/mixins/routerFuncs";
+
+pinia.use(({ store }) => {
+  store.$router = markRaw(router)
+});
 
 createApp(App)
   .use(vuetify)

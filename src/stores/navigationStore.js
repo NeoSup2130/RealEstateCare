@@ -1,7 +1,7 @@
 import {defineStore} from "pinia";
 
 function validate(value) {
-    const pages = ['home', 'schedule', 'completed', 'knowlegdebase', 'settings'];
+    const pages = ['home', 'schedule', 'completed', 'knowlegdebase', 'settings', 'login'];
 
     if(pages.indexOf(value) != -1) 
         return true;
