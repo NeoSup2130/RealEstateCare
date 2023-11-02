@@ -13,6 +13,10 @@ import TopBar from './components/bars/TopBar.vue'
 import BottomNav from './components/bars/BottomNav.vue'
 
 export default {
+  created()
+  {
+    console.log("env: "+process.env.NODE_ENV);
+  },  
   name: 'App',
   components: {
     TopBar, BottomNav
