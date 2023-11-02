@@ -1,9 +1,13 @@
 export default {
     methods: 
     {
-        sendToPage(routeName)
+        sendToPage(routeName, useName = true)
         {
-            this.$router.push({name : routeName});
+            console.log("Sending to page: "+routeName);
+            if(useName)
+                this.$router.push({name : routeName});
+            else 
+            this.$router.push(routeName);
         }
     }
 }
