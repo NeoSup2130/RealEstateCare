@@ -1,5 +1,5 @@
 <template>
-    <v-bottom-navigation :elevation="0" mode="shift" grow class="my-toolbar bg-teal" :model-value="NavValue">
+    <v-bottom-navigation :elevation="0" mode="shift" grow class="my-toolbar bg-teal" :model-value="NavValue" :disabled="NavValue==='login'">
         <template v-for="(item, index) in navigation" :key="index">
             <v-btn class="px-1" :value="item.link" v-on:click="handleClick(item.link)">
                 <v-icon>{{ item.icon }}</v-icon>
@@ -54,6 +54,10 @@ export default {
 <style scoped>
 .my-toolbar :deep(button) {
     max-width: 33% !important;
+}
+.my-toolbar :deep(.v-btn--active)
+{
+    background-color: rgb(0, 125, 125);
 }
 span {
     font-size: 1.3em;
