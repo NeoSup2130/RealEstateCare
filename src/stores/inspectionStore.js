@@ -1,8 +1,7 @@
 import {defineStore} from "pinia";
 import axios from 'axios';
 
-let port = "3000";
-const url = "http://localhost:"+port+"/inspections"; 
+import { apiURL as url } from '@/globals.js'
 
 export const useInspectionStore = defineStore('inspection', 
 {
@@ -21,7 +20,7 @@ export const useInspectionStore = defineStore('inspection',
         fetchInspections()
         {
             this.loadingState = 'loading';
-            axios.get(url + '?_sort=date&_order=desc')
+            axios.get(url + 'inspections?_sort=date&_order=desc')
             .then(result => {
                 this.loadingState = 'notLoading';
                 this.inspections = result.data;

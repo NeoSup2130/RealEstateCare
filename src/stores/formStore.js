@@ -1,8 +1,7 @@
 import {defineStore} from "pinia";
 import axios from 'axios';
 
-let port = "3000";
-const url = "http://localhost:"+port+"/form-inspection"; 
+import { apiURL as url } from '@/globals.js'
 
 export const useFormInspectionStore = defineStore('formInspection', 
 {
@@ -21,7 +20,7 @@ export const useFormInspectionStore = defineStore('formInspection',
         fetchFormInspection()
         {
             this.loadingState = 'loading';
-            axios.get(url)
+            axios.get(url + "form-inspection")
             .then(result => {
                 this.loadingState = 'notLoading';
                 this.formInspection = result.data;
