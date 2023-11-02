@@ -6,4 +6,4 @@ export const devServerURL = "http://localhost:3000/";
 
 export const prodServerURL = "https://slava-real-estate-server.cyclic.app/";
 
-export const apiURL = !isProduction ?  prodServerURL : devServerURL;
+export const apiURL = prodServerURL;
