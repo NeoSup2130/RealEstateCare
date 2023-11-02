@@ -1,8 +1,7 @@
 <template>
-    <h1 class="mt-2">Settings</h1>
-    <v-divider class="w-50 mx-auto my-1 mb-5" thickness="3"></v-divider>
-    <v-card class="mx-auto" max-width="344"
-    >
+    <h1 class="ma-0">Settings</h1>
+    <v-divider class="w-50 mx-auto" thickness="3"></v-divider>
+    <v-card class="mx-auto mt-5" max-width="344">
     <v-card-title>
         User details
     </v-card-title>

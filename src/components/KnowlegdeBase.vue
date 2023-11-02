@@ -1,6 +1,6 @@
 <template>
-    <h2 class="mt-2">Knowlegde base</h2>
-    <v-divider class="w-50 mx-auto my-1" thickness="3"></v-divider>
+    <h1 class="ma-0">Knowlegde base</h1>
+    <v-divider class="w-50 mx-auto" thickness="3"></v-divider>
     <v-list lines="two" class="text-left">
         <v-list-item
         v-for="(pdf, index) in pdfs"
