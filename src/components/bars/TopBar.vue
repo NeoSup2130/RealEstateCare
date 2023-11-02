@@ -16,7 +16,8 @@
 
       <v-spacer></v-spacer>
       <v-icon class="float-right ma-1" icon="mdi-bell"></v-icon>
-      <v-btn class="float-right ma-1" density="compact" icon="mdi-cog" @click="handleClick('settings')"></v-btn>
+      <v-icon class="float-right ma-1 hoverable" density="compact" icon="mdi-cog"
+      @click="handleClick('settings')" :disabled="NavValue==='login'"></v-icon>
     </v-toolbar>
 </template>
 
@@ -57,5 +58,8 @@ export default {
 .v-list-item {
   color: white;
   text-align: left;
+}
+.hoverable:hover {
+  color: rgb(209, 209, 209);
 }
 </style>
