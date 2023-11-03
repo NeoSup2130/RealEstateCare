@@ -1,44 +1,44 @@
 <template>
-    <h1 class="ma-0">This is schedule page</h1>
+    <h1 class="ma-0">Active schedule</h1>
     <v-divider class="w-50 mx-auto" thickness="3"></v-divider>
     <ProgressBar :display="this.isLoading"/>
-    <v-expansion-panels class="mt-5" v-if="formInspection != null" multiple accordion>
-      <v-expansion-panel v-for="(category, index) in formInspection" :key="index" class="ma-0">
-        <v-expansion-panel-title expand-icon="mdi-menu-down">
-            {{ Object.keys(category)[0] }}
-        </v-expansion-panel-title>
-         <v-expansion-panel-text class="category-view">
-            <div v-for="(value, name, index) in category[Object.keys(category)[0]]" :key="index">
-                <!-- <v-input>
-
-                </v-input> -->
-                <v-text-field :v-model='Object.keys(category)[0]+"-"+name' :label="name">
-                </v-text-field>
-            </div>
-            <!-- <InspectionPanel v-for="(item, index) in category" :key="index" :inspection="item">
-            </InspectionPanel> -->
-        </v-expansion-panel-text>
-      </v-expansion-panel>
-    </v-expansion-panels>
-    <!-- <v-file-input
+    <v-file-input
         :rules="rules"
         accept="image/png, image/jpeg, image/bmp"
         placeholder="Additional evidence"
         prepend-icon="mdi-camera"
         label="Image"
-  ></v-file-input> -->
+        @change="handleImageFile"
+  ></v-file-input>
+  <v-btn @click="uploadImage()">
+    Upload
+  </v-btn>
+  <img v-if="imageUrl !== null" :src="imageUrl" alt="Uploaded Image" />
 </template>
 
 <script>
 import {useFormInspectionStore} from "@/stores/formStore.js";
 import ProgressBar from "@/components/shared/ProgressBar.vue";
+import axios from 'axios';
 
     export default {
+        mounted() {
+            if(this.formInspection.length == 0) 
+            {
+                this.fetchForm();
+            }
+            axios.get("https://giant-immediate-celsius.glitch.me/images/2").then(response => 
+            {
+                this.imageUrl = response.data.image;
+            })
+        },
         name : "ScheduledPage",
         components : {ProgressBar},
         data() {
             return {
                 store : useFormInspectionStore(),
+                selectedFile : null,
+                imageUrl : null,
                 rules : [
                     value => { return (
                         !value ||
@@ -50,6 +50,40 @@ import ProgressBar from "@/components/shared/ProgressBar.vue";
             }
         },
         methods : {
+            handleImageFile(e)
+            {
+                this.selectedFile = e.target.files[0];
+            },
+            async uploadImage()
+            {
+                const reader = new FileReader();
+
+                reader.onload = (event) => {
+                    const base64Image = event.target.result;
+                    this.uploadBase64Image(base64Image);
+                };
+
+                reader.readAsDataURL(this.selectedFile);
+            },
+            async uploadBase64Image(base64Image) 
+            {
+                console.log(base64Image);
+                axios({
+                method : 'post',
+                url : "https://giant-immediate-celsius.glitch.me/images",
+                headers : {
+                    'Access-Control-Allow-Origin' : '*',
+                    'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+                },
+                data : {
+                    image : base64Image
+                }
+            }).then(response => {
+                console.log('Image uploaded successfully:', response.data);
+            }).catch(error => {
+                console.error('Error uploading image:', error);
+            })
+            },
             showInspection(e)
             {
                 window.alert(e.id);
@@ -73,13 +107,6 @@ import ProgressBar from "@/components/shared/ProgressBar.vue";
             },
             error() {
                 return this.store.errors;
-            }
-        },
-        mounted()
-        {
-            if(this.formInspection.length == 0) 
-            {
-                this.fetchForm();
             }
         }
     }
