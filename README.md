@@ -24,6 +24,9 @@ Several of these cases occur within the project/website, despite my best efforst
 4. Vist website on localhost:8000
 5. Login and Enjoy!
 
+# What doesn't work fully yet:
+- Adding a new inspection form is not fully display the added data.
+
 # Used websites
 - Glitch
 - Netlify
