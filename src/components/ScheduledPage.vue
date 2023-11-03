@@ -16,10 +16,10 @@
             <v-expansion-panels variant="accordion">
                 <v-expansion-panel>
                     <v-expansion-panel-title expand-icon="mdi-menu-down">
-                    Damage
+                    Damages
                     </v-expansion-panel-title>
                     <v-expansion-panel-text class="pa-4">
-                        <DamageCategory :category="'Damage'" :dataTable="damageCache" @category-saved="updateCategory"></DamageCategory>
+                        <DamageCategory :category="'Damages'" :dataTable="damageCache" @category-saved="updateCategory"></DamageCategory>
                     </v-expansion-panel-text>
                 </v-expansion-panel>
             </v-expansion-panels>
@@ -136,7 +136,7 @@ export default {
 
             switch(payload.category)
             {
-                case "Damage":
+                case "Damages":
                 this.damageCache = payload.data;
                 break;
                 case "Maintenance":
