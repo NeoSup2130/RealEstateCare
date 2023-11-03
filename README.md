@@ -2,6 +2,14 @@
 
 Hier vind u het VueJS prototype om de case van Real Estate Care te realiseren.
 
+# WCAG 
+Several best practices for level A where being reached until I came to the conclusion that Vuetify breaks certain conventions
+On LoginPage.vue (/login-user)
+- 2 errors occur due to a multiple lables, but these are internal input lables which Vuetify added. I cannot change those without affecting the entire framework.
+On SettingPage.vue (/settings)
+- 1 error occurs because of the slider component, using an internal input field which doesn't have a lable.
+Several of these cases occur within the project/website, despite my best efforst I can't fix all of them.  
+
 # How to login in?
 - User email: admin@mail.com
 - User password: admin123
