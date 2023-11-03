@@ -51,9 +51,7 @@ export const useInspectionStore = defineStore('inspection',
                 data : {
                     "id" : id,
                     "date" : new Date().toISOString().split('T')[0],
-                    "items" : [
-                        data
-                    ]
+                    "items" : data
                 }
             }).then(response => {
                 console.log('Post uploaded successfully:', response.data);
