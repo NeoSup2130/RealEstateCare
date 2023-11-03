@@ -11,7 +11,7 @@
           </v-row>
         </v-expansion-panel-title>
         <v-expansion-panel-text class="category-view">
-            <InspectionPanel v-for="(item, index) in inspection.items" :key="index" :inspection="item">
+            <InspectionPanel v-for="(item, index) in inspection.items" :key="index" :inspection="item" :inspectID="inspection.id">
             </InspectionPanel>
         </v-expansion-panel-text>
       </v-expansion-panel>
@@ -21,14 +21,25 @@
 <script>
 import InspectionPanel from "@/components/shared/InspectionPanel.vue";
 import ProgressBar from "@/components/shared/ProgressBar.vue";
+import {useFormInspectionStore} from "@/stores/formStore.js";
 import {useInspectionStore} from "@/stores/inspectionStore.js";
 
     export default {
         name: "CompletedView",
         components: { InspectionPanel, ProgressBar },
+        mounted()
+        {
+            this.fetchInspections();
+            
+            if (this.inspectionForm.length == 0)
+            {
+                this.fetchForm();
+            }
+        },
         data() {
             return {
                 store : useInspectionStore(),
+                formStore : useFormInspectionStore(),
             }
         },
         methods : {
@@ -39,11 +50,18 @@ import {useInspectionStore} from "@/stores/inspectionStore.js";
             fetchInspections()
             {
                 this.store.fetchInspections();
-            }
+            },
+            fetchForm()
+            {
+                this.formStore.fetchFormInspection();
+            }, 
         },
         computed : {
             inspections() {
                 return this.store.inspections;
+            },
+            inspectionForm() {
+                return this.formStore.formInspection;
             },
             isLoading() {
                 if (this.store)
@@ -54,13 +72,6 @@ import {useInspectionStore} from "@/stores/inspectionStore.js";
             },
             error() {
                 return this.store.errors;
-            }
-        },
-        mounted()
-        {
-            if(this.inspections.length == 0) 
-            {
-                this.fetchInspections();
             }
         }
     }

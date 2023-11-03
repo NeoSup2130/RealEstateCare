@@ -8,6 +8,7 @@ export const useFormInspectionStore = defineStore('formInspection',
     state: () => {
         return {
             loadingState : 'notLoading',
+            openInspections : [],
             formInspection : [],
             errors : null
         }
@@ -17,6 +18,26 @@ export const useFormInspectionStore = defineStore('formInspection',
         debug : true
     },
     actions : {
+        fetchOpenForms()
+        {
+            this.loadingState = 'loading';
+            axios.get(url + "open-inspections")
+            .then(result => {
+                this.loadingState = 'notLoading';
+                this.openInspections = result.data;
+            })
+            .catch(error => {
+                this.loadingState = 'notLoading';
+                this.openInspections = [];
+                this.errors = error;
+            })
+        },
+        clearOpenForms()
+        {
+            this.loadingState = 'notLoading';
+            this.openInspections = [];
+            this.errors = null;
+        },
         fetchFormInspection()
         {
             this.loadingState = 'loading';

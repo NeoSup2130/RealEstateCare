@@ -21,7 +21,6 @@ export const useAuthStore = defineStore('authStore',
         login(userEmail, password)
         {
             this.loadingState = 'loading';
-            console.log("apiURL: " + apiURL);
             axios({
                 method : 'post',
                 url : apiURL + "login",
@@ -53,7 +52,6 @@ export const useAuthStore = defineStore('authStore',
             this.user = [];
             this.errors = null;
             this.returnUrl = null;
-            console.log('log out called');
             this.$router.push('/login-user');
         }
     },
